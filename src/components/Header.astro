@@ -1,0 +1,29 @@
+---
+import { url } from '../lib/url';
+import { site } from '../data/site';
+---
+
+<div class="topbar">
+  <div class="wrap topbar__in">
+    <span>{site.address.street}, {site.address.city}, {site.address.state} {site.address.zip}</span>
+    <span>Kitchen from 11am daily</span>
+    <a href={site.phoneHref}>{site.phone}</a>
+  </div>
+</div>
+
+<header class="header">
+  <div class="wrap header__in">
+    <a class="brand" href="#top" aria-label="Hoffstot&rsquo;s Cafe Monaco, home">
+      <img src={url('/images/logo.png')} alt="Hoffstot&rsquo;s Cafe Monaco, Oakmont PA" width="477" height="317" />
+    </a>
+    <nav class="nav" aria-label="Main">
+      <span class="nav__links">
+        <a href="#menus">Menus</a>
+        <a href="#traditions">Every week</a>
+        <a href="#hours">Hours</a>
+        <a href="#visit">Find us</a>
+      </span>
+      <a class="btn btn--gold" href={site.orderUrl} target="_blank" rel="noopener">Order online</a>
+    </nav>
+  </div>
+</header>

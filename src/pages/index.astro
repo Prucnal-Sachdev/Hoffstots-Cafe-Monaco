@@ -1,0 +1,150 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/url';
+import { site, kitchenHours, barHours, menus, traditions } from '../data/site';
+
+const title = "Hoffstot's Cafe Monaco | Restaurant and Bar in Oakmont, PA";
+const description =
+  'Restaurant and bar on Allegheny Avenue in Oakmont. Lunch and dinner daily, Prime Rib Mondays, Spaghetti Sundays and a Sunday pasta drive-thru. Order online or call (412) 828-8555.';
+---
+
+<Base title={title} description={description} preloadImage="/images/storefront.jpg">
+  <section class="hero" id="top">
+    <div class="hero__media">
+      <img src={url('/images/storefront.jpg')} alt="" width="1800" height="1427" fetchpriority="high" />
+    </div>
+    <div class="wrap hero__in">
+      <p class="eyebrow">Allegheny Avenue, Oakmont</p>
+      <h1>Lunch, dinner, and a <em>drive-thru for pasta.</em></h1>
+      <p>
+        A restaurant and bar in the middle of Oakmont, with a kitchen open from eleven every
+        day and a few traditions that run on their own schedule.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--gold" href={site.orderUrl} target="_blank" rel="noopener">Order online</a>
+        <a class="btn btn--ghost" href="#menus">See the menus</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="traditions">
+    <div class="wrap">
+      <p class="eyebrow">Every week</p>
+      <h2>Three things that happen here on a schedule.</h2>
+      <p class="lede" style="color:#c8c0ac">
+        Most restaurants have specials. These are closer to fixtures &mdash; regulars plan
+        their week around them.
+      </p>
+      <div class="trad">
+        {traditions.map((t) => (
+          <div class="trad__card">
+            <h3>{t.name}</h3>
+            <p class="trad__detail">{t.detail}</p>
+            <p>{t.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="menus">
+    <div class="wrap">
+      <p class="eyebrow">Menus</p>
+      <h2>Seven menus, depending on the day.</h2>
+      <p class="lede">
+        Lunch and dinner run daily, with an early bird menu for the earlier seatings and
+        family-style meals you order ahead for a table of people.
+      </p>
+      <div class="menus">
+        {menus.map((m) => (
+          <div class="menu-item">
+            <h3>{m.name}</h3>
+            <p>{m.note}</p>
+          </div>
+        ))}
+      </div>
+      <p style="margin-top:2rem;font-size:.92rem;color:var(--ink-faint)">
+        On the finished site each of these would be a page you can read on a phone and that
+        Google can index, rather than a PDF to download.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--deep" id="hours">
+    <div class="wrap">
+      <p class="eyebrow">Hours</p>
+      <h2>The kitchen and the bar keep different hours.</h2>
+      <p class="lede">
+        Worth knowing before you turn up late: the bar carries on well after the kitchen
+        closes, until two in the morning on Fridays and Saturdays.
+      </p>
+      <div class="hours-pair">
+        <div class="panel">
+          <h3>Kitchen</h3>
+          <table class="hours">
+            <tbody>
+              {kitchenHours.map((h) => (
+                <tr>
+                  <th scope="row">{h.day}</th>
+                  <td>{h.open} &ndash; {h.close}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h3>Bar</h3>
+          <table class="hours">
+            <tbody>
+              {barHours.map((h) => (
+                <tr>
+                  <th scope="row">{h.day}</th>
+                  <td>{h.open} &ndash; {h.close}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Find us</p>
+        <h2>533 Allegheny Avenue.</h2>
+        <p>
+          In the yellow brick building with the black and gold windows, in the middle of
+          Oakmont. There is a drive-thru round the side, which is not something most
+          restaurants can say.
+        </p>
+        <dl class="detail" style="margin-top:1.6rem">
+          <div>
+            <dt>Address</dt>
+            <dd>
+              <a href={site.mapsUrl} target="_blank" rel="noopener">
+                {site.address.street}<br />
+                {site.address.city}, {site.address.state} {site.address.zip}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href={site.phoneHref}>{site.phone}</a> <span style="color:var(--ink-faint);font-weight:400">{site.phoneNote}</span></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+          </div>
+        </dl>
+        <p style="margin-top:1.8rem">
+          <a class="btn btn--outline" href={site.orderUrl} target="_blank" rel="noopener">Order online</a>
+        </p>
+      </div>
+      <div>
+        <img src={url('/images/storefront.jpg')} alt="The Hoffstot&rsquo;s Cafe Monaco storefront on Allegheny Avenue in Oakmont" width="1800" height="1427" loading="lazy" />
+      </div>
+    </div>
+  </section>
+</Base>

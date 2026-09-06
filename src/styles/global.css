@@ -1,0 +1,137 @@
+/* Hoffstot's Cafe Monaco. The palette comes from their own storefront and logo:
+   the black-and-gold window trim on Allegheny Avenue, the sage green of the tree
+   in their logo, and the terracotta of the planters out front. No webfonts, no
+   framework, no client-side rendering. */
+
+:root {
+  --char: #17150f;         /* their window frames */
+  --char-soft: #2a2620;
+  --gold: #b8912f;         /* the lettering on the glass */
+  --gold-light: #d9b45e;
+  --sage: #a0a078;         /* the tree in their logo */
+  --terracotta: #b5764a;   /* the planters */
+
+  --cream: #fbf8f1;
+  --cream-deep: #f3ede0;
+  --line: #e3dac8;
+
+  --ink: #1e1b16;
+  --ink-soft: #55503f;
+  --ink-faint: #877f6b;
+  --white: #fff;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --wrap: 1120px;
+  --radius: 3px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+body { margin: 0; font-family: var(--sans); font-size: 17px; line-height: 1.68; color: var(--ink-soft); background: var(--cream); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); line-height: 1.14; margin: 0 0 .5em; font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.3rem, 5.6vw, 4rem); }
+h2 { font-size: clamp(1.7rem, 3.7vw, 2.6rem); }
+h3 { font-size: 1.22rem; }
+p { margin: 0 0 1.15em; }
+a { color: #8a6c1f; }
+img { max-width: 100%; height: auto; display: block; }
+
+.wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+.section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+.section--deep { background: var(--cream-deep); }
+.section--dark { background: var(--char); color: #c8c0ac; }
+.section--dark h2, .section--dark h3 { color: var(--cream); }
+
+.eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #8a6c1f; margin: 0 0 .9rem; }
+.section--dark .eyebrow, .hero .eyebrow { color: var(--gold-light); }
+.lede { font-size: 1.12rem; max-width: 62ch; }
+
+.btn { display: inline-block; padding: .88rem 1.7rem; border-radius: var(--radius); font-weight: 600; font-size: .94rem; letter-spacing: .03em; text-decoration: none; border: 2px solid transparent; transition: background-color .15s ease, color .15s ease, border-color .15s ease; }
+.btn--gold { background: var(--gold); color: var(--char); }
+.btn--gold:hover { background: var(--gold-light); }
+.btn--ghost { border-color: rgba(255,255,255,.6); color: var(--white); }
+.btn--ghost:hover { background: rgba(255,255,255,.14); border-color: #fff; }
+.btn--outline { border-color: var(--char); color: var(--char); }
+.btn--outline:hover { background: var(--char); color: var(--cream); }
+:where(a, button, input, textarea, select):focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.skip { position: absolute; left: -9999px; background: var(--char); color: #fff; padding: .7rem 1.1rem; z-index: 100; }
+.skip:focus { left: .6rem; top: .6rem; }
+
+/* Header */
+.topbar { background: var(--char); color: #b8b0a0; font-size: .82rem; padding: .45rem 0; }
+.topbar__in { display: flex; flex-wrap: wrap; gap: .3rem 1.6rem; align-items: center; justify-content: center; }
+.topbar a { color: var(--gold-light); font-weight: 700; text-decoration: none; }
+.topbar a:hover { text-decoration: underline; }
+
+.header { position: sticky; top: 0; z-index: 50; background: var(--cream); border-bottom: 2px solid var(--gold); }
+.header__in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .5rem 0; }
+.brand { display: block; line-height: 0; text-decoration: none; }
+.brand img { height: clamp(58px, 8vw, 78px); width: auto; }
+.nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav__links { display: flex; align-items: center; gap: 1.5rem; }
+.nav a { color: var(--ink-soft); text-decoration: none; font-size: .93rem; font-weight: 600; white-space: nowrap; }
+.nav a:hover { color: #8a6c1f; }
+/* `.nav a` outranks a bare `.btn--*` class; buttons in the nav win their colour back. */
+.nav a.btn--gold { color: var(--char); }
+.nav a.btn--outline { color: var(--char); }
+@media (max-width: 880px) { .nav__links { display: none; } }
+
+/* Hero */
+.hero { position: relative; background: var(--char); color: var(--white); }
+.hero__media { position: absolute; inset: 0; overflow: hidden; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
+.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(23,21,15,.92) 0%, rgba(23,21,15,.74) 46%, rgba(23,21,15,.34) 100%); }
+.hero__in { position: relative; padding: clamp(4.5rem, 12vw, 8.5rem) 0; max-width: 40rem; }
+.hero h1 { color: var(--white); text-wrap: balance; }
+.hero h1 em { font-style: italic; color: var(--gold-light); }
+.hero p { color: #e7dfcd; font-size: 1.14rem; max-width: 33rem; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.1rem; }
+
+/* Traditions */
+.trad { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.4rem; }
+.trad__card { background: var(--char-soft); border-top: 3px solid var(--gold); border-radius: var(--radius); padding: 1.7rem 1.6rem; }
+.trad__card h3 { margin-bottom: .2rem; }
+.trad__detail { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-light); margin-bottom: .8rem; }
+.trad__card p { margin: 0; font-size: .95rem; }
+
+/* Menus */
+.menus { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 0; border-top: 1px solid var(--line); margin-top: 2.2rem; }
+.menu-item { padding: 1.25rem 1.3rem; border-bottom: 1px solid var(--line); }
+.menu-item h3 { font-size: 1.06rem; margin-bottom: .15rem; }
+.menu-item p { margin: 0; font-size: .89rem; color: var(--ink-faint); }
+
+/* Hours */
+.hours-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.4rem; }
+.panel { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.8rem; }
+.section--dark .panel { background: var(--char-soft); border-color: #3b352b; }
+.panel h3 { margin-bottom: .9rem; }
+.hours { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.hours th, .hours td { text-align: left; padding: .48rem 0; border-bottom: 1px solid var(--line); font-weight: 400; }
+.section--dark .hours th, .section--dark .hours td { border-color: #3b352b; }
+.hours td { text-align: right; color: var(--ink); }
+.section--dark .hours td { color: var(--cream); }
+.hours tr:last-child th, .hours tr:last-child td { border-bottom: 0; }
+
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: clamp(1.5rem, 4vw, 3.2rem); align-items: center; }
+.split img { border-radius: var(--radius); width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+.detail { margin: 0; display: grid; gap: 1rem; }
+.detail dt { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); }
+.detail dd { margin: .12rem 0 0; font-size: 1.01rem; color: var(--ink); }
+.detail a { text-decoration: none; font-weight: 700; }
+.detail a:hover { text-decoration: underline; }
+
+/* Footer */
+.footer { background: var(--char); color: #9d9584; padding: 3rem 0 2rem; font-size: .92rem; }
+.footer h4 { font-family: var(--sans); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-light); margin: 0 0 .85rem; }
+.footer a { color: #e6ddc9; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+.footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 2rem; }
+.footer__bottom { border-top: 1px solid #3b352b; margin-top: 2.4rem; padding-top: 1.3rem; font-size: .84rem; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: space-between; }
