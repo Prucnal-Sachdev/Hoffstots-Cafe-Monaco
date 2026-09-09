@@ -3,7 +3,7 @@
 A speculative rebuild of the homepage for Hoffstot's Cafe Monaco (Oakmont, PA), built by
 Prucnal & Sachdev. Not commissioned.
 
-- **Preview:** https://prucnalj.github.io/Hoffstots-Cafe-Monaco/ (built `noindex`)
+- **Preview:** https://prucnal-sachdev.github.io/Hoffstots-Cafe-Monaco/ (built `noindex`)
 - **Their current site:** https://hoffstots.com
 - **Open questions:** [CONTENT-NEEDED.md](CONTENT-NEEDED.md)
 
@@ -35,6 +35,6 @@ is not on this page and not in the outreach email.
 Astro, static output, no client framework, no webfonts, no JavaScript on the page.
 
 ```bash
-MSYS_NO_PATHCONV=1 SITE_URL=https://prucnalj.github.io BASE_PATH=/Hoffstots-Cafe-Monaco \
+MSYS_NO_PATHCONV=1 SITE_URL=https://prucnal-sachdev.github.io BASE_PATH=/Hoffstots-Cafe-Monaco \
   PUBLIC_NOINDEX=1 npm run build
 ```
